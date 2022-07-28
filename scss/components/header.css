@@ -158,6 +158,16 @@
   overflow-y: scroll;
 }
 
+.hamburger__fixed-top {
+  position: fixed;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.hamburger__nav {
+  margin-top: 85px;
+}
+
 .hamburger__title {
   text-align: center;
   padding-top: 32px;
