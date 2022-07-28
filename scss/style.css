@@ -60,6 +60,13 @@ h6 {
   margin: 0;
 }
 
+input[type=submit] {
+  -wibkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url(../fonts/Montserrat-Medium.woff);
@@ -299,15 +306,11 @@ button {
 }
 
 .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
   background-color: #FFFFFF;
   opacity: 0.8;
 }
 
 .swiper-pagination-bullet-active {
-  width: 12px;
-  height: 12px;
   background: rgba(229, 188, 194, 0.6);
 }
 
@@ -448,7 +451,7 @@ button {
 
 .demo-catalog-slide-pink {
   position: absolute;
-  bottom: 3px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
   height: 73px;
@@ -581,6 +584,16 @@ button {
     font-size: 15px;
   }
 }
+@media (max-width: 450px) {
+  .new__layout {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "img1" "img2" "img3" "img4";
+    grid-gap: 20px;
+  }
+}
 .coupon__title {
   margin-bottom: 26px;
 }
@@ -620,6 +633,14 @@ button {
 
 .accordion:not(:last-child) {
   margin-bottom: 60px;
+}
+
+.accordion__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #4D4D4D;
+  text-align: left;
 }
 
 .accordion__content {
@@ -681,6 +702,9 @@ button {
   }
 }
 @media (max-width: 350px) {
+  .accordion__title {
+    font-size: 16px;
+  }
   .questions {
     padding-bottom: 35px;
   }
@@ -853,7 +877,7 @@ button {
 }
 @media (max-width: 380px) {
   #submit {
-    padding: 20px 30px;
+    padding: 15px 45px;
     font-size: 15px;
   }
 }/*# sourceMappingURL=style.css.map */

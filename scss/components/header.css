@@ -252,4 +252,22 @@
   .hamburger__menu.active {
     left: 0;
   }
+}
+@media (max-width: 450px) {
+  .header__offer {
+    display: none;
+  }
+  .hamburger__menu {
+    top: 0;
+    height: 100vh;
+    /* Это что бы сделать до конца экрана */
+  }
+  .hamburger__menu.active {
+    top: 0;
+    height: 100vh;
+    /* Это что бы сделать до конца экрана */
+  }
+  .header__nav {
+    margin-top: 30px;
+  }
 }/*# sourceMappingURL=header.css.map */

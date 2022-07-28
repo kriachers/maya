@@ -73,3 +73,19 @@ position: relative;
         font-size: 15px;
     }
 }
+
+@media (max-width: 450px) {
+.new__layout {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "img1"
+            "img2"
+            "img3"
+            "img4";
+        grid-gap: 20px;
+
+    }
+}
