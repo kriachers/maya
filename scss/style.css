@@ -94,6 +94,8 @@ body {
 
 body.ns {
   overflow-y: hidden;
+  touch-action: none;
+  -ms-touch-action: none;
 }
 
 p {
@@ -503,9 +505,6 @@ button {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     justify-content: center;
-  }
-  .demo-catalog-slide-pink {
-    width: 278px;
   }
   .demo-catalog-slide__img-wrapper {
     text-align: center;

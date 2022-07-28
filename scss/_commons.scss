@@ -3,7 +3,9 @@ body {
 }
 
 body.ns {
-    overflow-y: hidden
+    overflow-y: hidden;
+    touch-action: none;
+    -ms-touch-action: none;
 }
 
 // class 'no scroll' for body (in order to add scroll to burger meny)
