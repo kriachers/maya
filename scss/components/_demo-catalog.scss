@@ -1,0 +1,102 @@
+.demo-catalog__wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    grid-gap: 20px;
+}
+
+.demo-catalog__slide {
+    position: relative;
+    max-width: 418px;
+}
+
+
+// выравнивание плашки
+.demo-catalog-slide-pink {
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 73px;
+    width: 100.3%;
+    background-color: rgba(229, 188, 194, 0.6);
+    backdrop-filter: blur(5px);
+    border-radius: 0px 0px 10px 10px;
+}
+
+// выравнивание текста
+.demo-catalog-slide__title {
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    text-align: center;
+   transform: translateX(-50%);
+   padding: 25px;
+    border-radius: 0px 0px 10px 10px;
+
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    align-items: center;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+.demo-catalog-slide__img {
+border-radius: 10px;
+}
+
+// ADAPTIVE
+
+@media (max-width: 1000px) {
+.demo-catalog__wrapper {
+        display: grid;
+        grid-template-columns: 30% 30%;
+        grid-template-rows: 1fr 1fr;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 650px) {
+.demo-catalog-slide__title {
+        font-size: 15px;
+        line-height: 24px;
+        padding: 15px;
+    }
+
+.demo-catalog-slide-pink {
+    height: 53px;
+}
+
+}
+
+// grid по центру и по-одному
+
+@media (max-width: 600px) {
+    
+.demo-catalog__wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-content: center;
+    }
+
+.demo-catalog-slide-pink {
+    width: 278px;
+}
+.demo-catalog-slide__img-wrapper {
+    text-align: center;
+}
+.demo-catalog__slide {
+    margin: 0 auto;
+}
+
+}
+
+
+
+// EFFECTS
+

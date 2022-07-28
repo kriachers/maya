@@ -1,0 +1,121 @@
+.questions {
+    background-color: #F8EFF2;
+    padding-bottom: 131px;
+}
+
+.accordion__control {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: none;
+    padding: 29px 81px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.questions__title {
+    padding-top: 101px;
+}
+
+.accordion:not(:last-child) {
+    margin-bottom: 60px;
+}
+
+.accordion__content {
+    background: rgba(255, 255, 255, 0.5);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 81px;
+    will-change: max-height;
+    transition: all ease-in-out 0.3s;
+    box-sizing: content-box;
+}
+
+.open .accordion__content {
+    opacity: 1;
+    padding: 20px 81px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all ease-in-out 0.3s;
+}
+
+.accordion__icon {
+    transition: all ease-in-out 0.3s;
+}
+
+
+.open .accordion__icon {
+    transform: rotate(45deg);
+    transition: all ease-in-out 0.3s;
+}
+
+.accordion__text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4D4D4D;
+    // padding: 0px 61px;
+}
+
+
+@media (max-width: 1100px) {
+
+}
+
+@media (max-width: 650px) {
+
+.questions {
+        background-color: #F8EFF2;
+        padding-bottom: 57px;
+    }
+
+    .questions__title {
+    padding-top: 50px;
+}
+
+.accordion__text {
+    font-size: 16px;
+}
+
+    .accordion__control {
+    padding: 25px 45px;
+}
+
+    .accordion__content {
+    padding: 0px 45px;
+}
+
+    .open .accordion__content {
+    padding: 20px 45px;
+}
+
+.accordion:not(:last-child) {
+    margin-bottom: 25px;
+}
+}
+
+
+@media (max-width: 350px) {
+
+.questions {
+        padding-bottom: 35px;
+    }
+
+    .accordion__content {
+            padding: 0px 30px;
+        }
+
+    .open .accordion__content {
+            padding: 20px 30px;
+        }
+
+    .accordion__control {
+    padding: 25px 30px;
+}
+
+.accordion:not(:last-child) {
+    margin-bottom: 20px;
+}
+// тк торчит 20px внешний паддинг у accordion__content
+
+}

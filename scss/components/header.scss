@@ -1,0 +1,305 @@
+
+
+.header {
+    z-index: 10;
+}
+
+.header__offer {
+    z-index: 101;
+}
+
+.header__nav {
+        z-index: 2;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0px;
+}
+
+.header__offer {
+    background-color: rgba(197, 127, 153, 0.5);
+    margin-bottom: 30px;
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.header-offer__link {
+    text-align: center;
+    padding: 18px 0px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+.header-offer__link--mobile {
+    text-align: center;
+    padding: 10px 0px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #FFFFFF;
+    display: none;
+}
+
+.header__nav {
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__logo-img {
+    min-width: 120px;
+}
+
+.header-nav__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__link, .nav-telephone__link {
+    color: #FFFFFF;
+}
+
+.nav__item:not(:last-child) {
+    margin-right: 100px;
+}
+
+.header-nav__telephone {
+    display: flex;
+}
+
+.nav-telephone__link {
+    align-self: center;
+}
+
+.nav-telephone__img {
+    margin-right: 18px;
+    pointer-events: none;
+}
+
+// version for telephone icon and dropdown popup with telephone number
+
+.dropdown__telephone-block {
+    position: absolute;
+    transition: all .3s ease;
+    visibility: hidden;
+    opacity: 0;
+     box-shadow: 0 0 0.46154rem rgb(0 0 0 / 16%);
+    padding: 16px 20px;
+    left: -100px;
+    top: 40px;
+    border-radius: 10px;
+}
+
+.header-nav__telephone {
+    position: relative;
+}
+
+.dropdown__telephone-block.active {
+    position: absolute;
+    transition: all .3s ease;
+    visibility: visible;
+    opacity: 1;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0.46154rem rgb(0 0 0 / 16%);
+    padding: 16px 20px;
+    left: -100px;
+    top: 50px;
+    border-radius: 10px;
+}
+
+.dropdown-telephone__title {
+margin-bottom: 10px;
+}
+
+
+// Hamburger menu
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3 ease-in-out;
+    transition: all 0.3 ease-in-out;
+    background-color: white;
+}
+
+
+// hamburger menu style
+
+
+.hamburger__menu {
+    width: 10%;
+    background-color: #FFFFFF;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    right: 0;
+    // чтобы меню выезжало справа
+    top: 8%;
+    height: calc(100vh - 8%);
+    position: fixed;
+    overflow-y: scroll;
+}
+
+.hamburger__menu.active {
+    position: fixed;
+    width: 100%;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    right: 0;
+    top: 8%;
+    height: calc(100vh - 8%);
+        /* Это что бы сделать до конца экрана */
+    overflow-y: scroll;
+}
+
+.hamburger__title {
+    text-align: center;
+    padding-top: 32px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+.hamburger__item {
+    padding: 25px 0;
+    border-bottom: 1px solid #ccc;
+    padding-left: 30px;
+}
+
+.hamburger__link {
+    text-transform: uppercase;
+}
+
+.hamburger__text {
+    text-align: center;
+    margin: 20px 30px;
+    background-color: #BF7691;
+    color: white;
+    padding: 30px;
+}
+
+
+
+
+// ADAPTIVE
+
+
+@media (max-width: 950px) {
+.nav-telephone__link {
+    display: none;
+}
+
+.nav-telephone__img {
+pointer-events: auto;
+cursor: pointer;
+margin-right: 0px;
+}
+
+}
+
+@media (max-width: 1200px) {
+    .nav__item:not(:last-child) {
+        margin-right: 60px;
+    }
+}
+
+// width-800 текстового номера на встплывающий pop-up с телефоном
+
+
+// changing text on ad banner 
+@media (max-width: 600px) {
+.header-offer__link--mobile {
+    display: block;
+}
+
+.header-offer__link {
+    display: none;
+}
+
+.demo-catalog__wrapper {
+    margin: 0 auto;
+}
+
+.hamburger__menu {
+    top: 6%;
+    height: calc(100vh - 6%);
+    /* Это что бы сделать до конца экрана */
+}
+
+.hamburger__menu.active {
+    top: 6%;
+    height: calc(100vh - 6%);
+    /* Это что бы сделать до конца экрана */
+}
+
+.header__nav {
+    margin-top: 60px;
+}
+// верхний баннер с акцией уменьшается, нужно уменшить верхний марджин у блока
+
+}
+
+
+// width: 700 -- menu hamburger
+
+@media only screen and (max-width: 800px) {
+
+    .hamburger {
+        display: block;
+        z-index: 10;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+        background-color: black;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+        background-color: black;
+    }
+
+     .header-nav__menu , .header-nav__telephone {
+        display: none;
+    }
+
+}
+
+// mobile - menu on left
+
+@media only screen and (max-width: 450px) {
+.heaver-nav__logo {
+ display: none }
+
+// чтобы меню выезжало слева
+
+.hamburger__menu {
+    left: 0;
+}
+
+.hamburger__menu.active {
+    left: 0;
+}
+}
+

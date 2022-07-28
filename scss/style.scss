@@ -1,0 +1,17 @@
+@import 'reset.scss'; //  -  сброс стилей
+@import 'variables'; //  -  переменные
+@import 'fonts'; //  -  шрифты
+@import 'commons'; //  -  общие стили
+@import 'mixin'; //  -  миксины
+
+
+// components 
+
+// MAIN PAGE    
+
+@import './components/banner'; //  -  баннер 
+@import './components/demo-catalog'; //  -  главная страница, секция "Каталог" 
+@import './components/news'; //  -  главная страница, секция "Наши новинки"
+@import './components/kupon'; //  -  главная страница, секция Получи купон
+@import './components/questions'; //  -  главная страница, секция с аккордеоном "Часто спрашивают"
+@import './components/answer'; //главная страница, секция "Не нашли ответ на вопрос?"
