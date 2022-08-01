@@ -11,18 +11,19 @@
 }
 
 .header {
-    position: absolute;
     width: 100%;
-    left: 0;
-    top: 0px;
+    // left: 0;
+    // top: 0px;
+    margin-bottom: 125px;
 }
 
 .header__offer {
     background-color: rgba(197, 127, 153, 0.5);
-    margin-bottom: 30px;
     position: fixed;
     box-sizing: border-box;
     width: 100%;
+    left: 0;
+    top: 0;
 }
 
 .header-offer__link {
@@ -294,6 +295,14 @@
 
 @media only screen and (max-width: 800px) {
 
+    .header-nav{
+        align-items: flex-start;
+    }
+
+    .header {
+            margin-bottom: 60px;
+        }
+
     .hamburger {
         display: block;
         z-index: 10;
@@ -323,8 +332,15 @@
 // mobile - menu on left
 
 @media only screen and (max-width: 450px) {
+
+
+    .header__nav {
+        flex-direction: row-reverse;
+        align-items: flex-start;
+    }
+
     .heaver-nav__logo {
-        display: none
+        // display: none
     }
 
     // чтобы меню выезжало слева
@@ -360,3 +376,4 @@
     }
 
 }
+

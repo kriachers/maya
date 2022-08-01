@@ -29,16 +29,6 @@ for(let i = 0; i < items.length; ++i) {
 
 }
 
-// SLIDER
-
-// const slider = document.querySelector('.swiper');
-
-// let mySwiper = new Swiper(slider, {
-//     slidesPerView: 2,
-//     spaceBetween: 10,
-// })
-
-
 const swiper = new Swiper('.swiper', {
     slidesPerView: 1,
 
