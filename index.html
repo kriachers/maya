@@ -22,6 +22,9 @@
 <!-- js для бургер меню -->
     <script src="./js/burger-menu.js" defer></script>
 
+<!-- скрипты главной страницы -->
+<script src="./js/main.js" defer></script>
+
 </head>
 
 <header class="header">
@@ -225,9 +228,33 @@
             на первый заказ
         </h3>
 
-        <button class="pink-button">получить купон</button>
+        <button class="pink-button coupon__button">получить купон</button>
     </div>
 </section>
+
+<div class="coupon__modal">
+    <div class="coupon-modal__header">
+    <p class="coupon-modal__title">Ваш купон на скидку:</p>
+    <img src="./img/coupon/cross.svg" alt="" class="coupon-modal__cross">
+    </div>
+        <div class="coupon-modal__body">
+            <div class="coupon-modal__wrapper">
+                <span class="coupon-modal__promocode">SUMMER2022</span>
+                <span class="coupon-modal__copy">Скопировать</span>
+            </div>
+
+            <div class="coupon-modal__notification">
+                <p class="coupon-modal-notification__text">Промокод скопирован!</p>
+            </div>
+
+            <p class="coupon-modal__descr">Воспользуйтесь промокодом для получения скидки при покупке от 3000 рублей</p>
+            <button class="pink-button">Перейти в магазин</button>
+        </div>
+</div>
+
+<div class="modal__overlay">
+
+</div>
 
 <section class="questions">
     <div class="container">
