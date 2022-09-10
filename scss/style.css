@@ -1164,10 +1164,10 @@ button {
   color: #fff;
 }
 
-.catalog-sidebar__item:hover.active {
+.catalog-sidebar__item.active {
   background-color: #BF7691;
 }
-.catalog-sidebar__item:hover.active .catalog-sidebar__link {
+.catalog-sidebar__item.active .catalog-sidebar__link {
   color: #fff;
 }
 

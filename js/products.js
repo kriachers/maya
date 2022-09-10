@@ -390,14 +390,29 @@ filterColor.addEventListener('change', function () {
 
 const categoryList = document.querySelector('.catalog-sidebar__nav');
 
+// переменная для хранений id предыдущей выбранной категории 
+var lastActiveTool = 0;
+
 categoryList.addEventListener('click', function () {
+    if (event.target.tagName != 'LI' && event.target.tagName != 'SPAN') {
+        return
+    }
     if (event.target.tagName == 'LI') {
         event.target.classList.add('active')
-        console.log('heeehe')
-    }
+        lastActiveTool = event.target.id;
 
+        // убираем цвет из предыдущей выбранной категории (если есть)
+        if (lastActiveTool != 0) {
+            document.getElementById(lastActiveTool).classList.remove('active')
+        }
+    }
     if (event.target.tagName == 'SPAN') {
         event.target.parentNode.classList.add('active')
-        console.log('heeehe')
+        lastActiveTool = event.target.parentNode.id;
+
+        // убираем цвет из предыдущей выбранной категории (если есть)
+        if (lastActiveTool != 0) {
+            document.getElementById(lastActiveTool).classList.remove('active')
+        }
     }
 })
