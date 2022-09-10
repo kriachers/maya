@@ -1,6 +1,7 @@
 
 const swiper = new Swiper('.swiper', {
     slidesPerView: 1,
+    lazy: true,
 
     pagination: {
         el: '.swiper-pagination',

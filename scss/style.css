@@ -1027,8 +1027,8 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  -webkit-animation: mail-fly 2s ease-in-out;
-          animation: mail-fly 2s ease-in-out;
+  -webkit-animation: mail-fly 1s ease-in-out;
+          animation: mail-fly 1s ease-in-out;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
