@@ -1142,10 +1142,33 @@ button {
   text-transform: uppercase;
   color: #4D4D4D;
   cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
 .catalog-sidebar__item {
   margin-bottom: 35px;
+  padding: 15px 10px;
+  border-radius: 20px;
+  border: 1px solid #BF7691;
+  background-color: #fff;
+  transition: background-color 0.5s ease-in-out;
+  text-align: center;
+}
+
+.catalog-sidebar__item:hover {
+  background-color: #BF7691;
+  transition: background-color 0.5s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+.catalog-sidebar__item:hover .catalog-sidebar__link {
+  color: #fff;
+}
+
+.catalog-sidebar__item:hover.active {
+  background-color: #BF7691;
+}
+.catalog-sidebar__item:hover.active .catalog-sidebar__link {
+  color: #fff;
 }
 
 .products-container {
@@ -1248,18 +1271,6 @@ button {
     row-gap: 20px;
     -moz-column-gap: 15px;
          column-gap: 15px;
-  }
-  .catalog-sidebar__link {
-    font-size: 16px;
-    line-height: 20px;
-    color: #fff;
-    background-color: #BF7691;
-    padding: 11px 17px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  .catalog-sidebar__link:hover {
-    background-color: #B95F76;
   }
   .catalog-sidebar__title {
     text-align: center;

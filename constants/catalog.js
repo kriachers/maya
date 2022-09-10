@@ -2,31 +2,31 @@ const ROOT_PRODUCTS = document.getElementById('products');
 
 const CATALOG = [
 
-{
-    id: 'el1',
-    name: 'Трусы послеродовые',
-    img: 'https://cdn1.ozone.ru/s3/multimedia-y/wc1200/6243525814.jpg',
-    price: 1100,
-    label: 'хит продаж',
-    color: ['бежевый'],
-    size: ["S", "M", "L", "XL"],
-    category: 'трусы'
-},
+    {
+        id: 'el1',
+        name: 'Трусы послеродовые',
+        img: 'https://cdn1.ozone.ru/s3/multimedia-y/wc1200/6243525814.jpg',
+        price: 1100,
+        label: 'хит продаж',
+        color: ['бежевый'],
+        size: ["S", "M", "L", "XL"],
+        category: 'трусы'
+    },
 
-{
-    id: 'el2',
-    name: 'Трусы послеродовые',
-    img: 'https://cdn1.ozone.ru/s3/multimedia-t/wc1200/6243522893.jpg',
-    price: 1100,
-    color: ['черный'],
-    size: ["S", "M", "L", "XL"],
-    category: 'трусы'
-},
+    {
+        id: 'el2',
+        name: 'Трусы послеродовые',
+        img: 'https://cdn1.ozone.ru/s3/multimedia-t/wc1200/6243522893.jpg',
+        price: 1100,
+        color: ['черный'],
+        size: ["S", "M", "L", "XL"],
+        category: 'трусы'
+    },
 
-{
-    id: 'el3',
-    name: 'Бандаж послеродовый',
-    img: 'https://cdn1.ozone.ru/s3/multimedia-f/wc1200/6089864979.jpg',
+    {
+        id: 'el3',
+        name: 'Бандаж послеродовый',
+        img: 'https://cdn1.ozone.ru/s3/multimedia-f/wc1200/6089864979.jpg',
         price: 1150,
         color: ['голубой'],
         size: ["S", "M", "L", "XL"],
@@ -184,3 +184,6 @@ const CATALOG = [
         category: 'бюсгальтер'
     }
 ]
+
+
+let filterCategoryCATALOG = CATALOG;
