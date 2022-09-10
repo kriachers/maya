@@ -25,17 +25,22 @@
 }
 
 .footer-form__title {
-font-weight: 400;
-font-size: 14px;
-line-height: 17px;
-color: rgba(77, 77, 77, 0.5);
-text-align: center;
-margin-bottom: 25px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(77, 77, 77, 0.5);
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.footer__form {
+.footer__form,
+.footer-form__sended {
     text-align: center;
     margin-bottom: 132px;
+}
+
+.footer__form.hidden {
+    display: none;
 }
 
 .footer-form__email {
@@ -79,7 +84,7 @@ margin-bottom: 25px;
     align-items: center;
 }
 
-.footer-copyright-small{
+.footer-copyright-small {
     font-weight: 300;
     font-size: 14px;
     line-height: 17px;
@@ -97,6 +102,49 @@ margin-bottom: 25px;
     text-align: right;
 }
 
+// Сообщение, что письмо отпарвлено! 
+
+.footer-form__sended {
+    display: none;
+    position: relative;
+    border-radius: 20px;
+    background-color: $pink;
+    padding: 20px 20px;
+
+    p {
+        text-align: center;
+        width: 60%;
+        margin: 0 auto;
+        color: #fff;
+    }
+
+    img {
+        position: absolute;
+
+        top: 50%;
+        transform: translateY(-50%);
+
+        animation: mail-fly 2s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes mail-fly {
+        from {
+            left: 0%;
+        }
+
+        to {
+            left: 10%
+        }
+    }
+}
+
+
+.footer-form__sended.active {
+    display: block;
+}
+
+
 // ADAPTIVE 
 
 @media (max-width: 867px) {
@@ -108,52 +156,66 @@ margin-bottom: 25px;
 
 @media (max-width: 850px) {
 
-.footer__form {
-    margin-bottom: 100px;
+    .footer__form,
+    .footer-form__sended {
+        margin-bottom: 100px;
+    }
+
+
+    .footer__copyright {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer-copyright__item:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .footer-copyright__item {
+        text-align: center;
+    }
+
 }
 
-.footer__copyright {
-    flex-direction: column;
-    justify-content: center;
-}
+@media (max-width: 560px) {
+    @keyframes mail-fly {
+        from {
+            left: 0%;
+        }
 
-.footer-copyright__item:not(:last-child) {
-    margin-bottom: 20px;
-}
-
-.footer-copyright__item {
-    text-align: center;
-}
-
+        to {
+            left: 7%
+        }
+    }
 }
 
 @media (max-width: 480px) {
-   
-.footer__menu {
-    flex-direction: column;
-}
 
-.footer__item:not(:last-child){
-    margin-right: 0;
-    margin-bottom: 20px;
-}
+    .footer__menu {
+        flex-direction: column;
+    }
 
-.footer-social__item:not(:last-child) {
-    margin-right: 30px;
-}
+    .footer__item:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
 
-.footer-form__email {
-    width: 100%;
-}
+    .footer-social__item:not(:last-child) {
+        margin-right: 30px;
+    }
 
-#submit {
-    max-width: 100%;
- }
+    .footer-form__email {
+        width: 100%;
+    }
+
+    #submit {
+        max-width: 100%;
+    }
 
 }
 
 @media (max-width: 380px) {
-#submit {
+    #submit {
         padding: 15px 45px;
         font-size: 15px;
     }
