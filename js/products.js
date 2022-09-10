@@ -398,21 +398,27 @@ categoryList.addEventListener('click', function () {
         return
     }
     if (event.target.tagName == 'LI') {
+
+        if (lastActiveTool != 0) {
+            document.getElementById(lastActiveTool).classList.remove('active')
+        }
+
         event.target.classList.add('active')
         lastActiveTool = event.target.id;
+        console.log('hi[jwdb')
 
         // убираем цвет из предыдущей выбранной категории (если есть)
-        if (lastActiveTool != 0) {
-            document.getElementById(lastActiveTool).classList.remove('active')
-        }
     }
     if (event.target.tagName == 'SPAN') {
-        event.target.parentNode.classList.add('active')
-        lastActiveTool = event.target.parentNode.id;
-
-        // убираем цвет из предыдущей выбранной категории (если есть)
         if (lastActiveTool != 0) {
             document.getElementById(lastActiveTool).classList.remove('active')
         }
+
+        event.target.parentNode.classList.add('active')
+        lastActiveTool = event.target.parentNode.id;
+        console.log('hi[jwdb')
+
+        // убираем цвет из предыдущей выбранной категории (если есть)
+
     }
 })
