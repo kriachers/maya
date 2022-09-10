@@ -216,3 +216,51 @@ allItems.addEventListener('click', () => {
     productsPage.render()
 
 })
+
+
+
+
+// фильтры по цветам 
+
+//один код для всех категорий цвета 
+// связь с html через data-f="назавние-цвета"> и event.target.dataset['f']; 
+
+document.querySelector('.catalog-sidebar__color').addEventListener('click', (event) => {
+
+if (event.target.tagName !== 'LI') return false;
+
+let filterClass = event.target.dataset['f'];
+    console.log(filterClass)
+
+let isColor = CATALOG.filter(function(element) {
+    let elementColor = element.color;
+    let elementFilteredClor = elementColor.find(item => {
+        if (item == filterClass) {
+            return true;
+        }
+    });
+    return elementFilteredClor == filterClass;
+})
+    console.log(isColor);
+
+    let htmlCatalog = '';
+    isColor.forEach(({ id, name, price, img }) => {
+
+        htmlCatalog += `
+                <li class='products-item'>
+                    <img class='product-element__img' src='${img}' />
+                    <span class='product-element__name'>${name}</span>
+                    <span class='product-element__price'>${price} ₽</span>
+                   <button class='product-element__btn'>Подробнее</button>
+                </li>
+            `;
+    });
+    let html = `
+        <ul class='products-container'>
+            ${htmlCatalog}
+        </ul>
+        `;
+
+    ROOT_PRODUCTS.innerHTML = html;
+
+})

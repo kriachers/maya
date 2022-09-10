@@ -7,7 +7,8 @@ const CATALOG = [
     name: 'Трусы послеродовые',
     img: 'https://cdn1.ozone.ru/s3/multimedia-y/wc1200/6243525814.jpg',
     price: 1100,
-    color: 'бежевый',
+    label: 'хит продаж',
+    color: ['бежевый'],
     size: ["S", "M", "L", "XL"],
     category: 'трусы'
 },
@@ -17,7 +18,7 @@ const CATALOG = [
     name: 'Трусы послеродовые',
     img: 'https://cdn1.ozone.ru/s3/multimedia-t/wc1200/6243522893.jpg',
     price: 1100,
-    color: 'черный',
+    color: ['черный'],
     size: ["S", "M", "L", "XL"],
     category: 'трусы'
 },
@@ -27,7 +28,7 @@ const CATALOG = [
     name: 'Бандаж послеродовый',
     img: 'https://cdn1.ozone.ru/s3/multimedia-f/wc1200/6089864979.jpg',
         price: 1150,
-        color: 'голубой',
+        color: ['голубой'],
         size: ["S", "M", "L", "XL"],
         category: 'бандаж'
     },
@@ -108,7 +109,7 @@ const CATALOG = [
         name: 'Трусики-Бразильяна из Микрофибры с Необр. Краями',
         img: 'https://www.tezenis.com/dw/image/v2/BCXQ_PRD/on/demandware.static/-/Sites-TEZ_EC_COM/default/dwdf4cb1e7/images/1SB01V825U-FI.jpg?sw=1000&sfrm=jpeg',
         price: 699,
-        color: ["розовый", "черный", "белый"],
+        color: ['розовый'],
         size: ["S", "M", "L", "XL"],
         category: 'трусы'
     },
