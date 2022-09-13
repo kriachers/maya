@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Maya</title>
 
     <link rel="stylesheet" href="./swiper/swiper-bundle.min.css">
 
@@ -22,6 +22,8 @@
     <!-- js с константами каталога (объекты) -->
     <script src="./constants/catalog.js" defer></script>
     <!-- js для отображения каталога и фильтров -->
+    <script src="./constants/filters.js" defer></script>
+    <script src="./js/button.js" defer></script>
     <script src="./js/products.js" defer></script>
 
 </head>
@@ -90,8 +92,6 @@
 
             <p class="hamburger__text">Бесплатная доставка теперь от 1999 рублей</p>
         </div>
-
-
     </header>
 
     <main class="catalog__main container">
@@ -99,68 +99,34 @@
         <aside class="catalog__sidebar">
             <h2 class="catalog-sidebar__title">каталог</h2>
 
-            <ul class="catalog-sidebar__nav">
-                <li class="catalog-sidebar__item" id="filter-leggins" data-f="лосины">
-                    <span class="catalog-sidebar__link">Лосины </span>
-                </li>
-                <li class="catalog-sidebar__item" id="filter-busgalters" data-f="бюсгальтер">
-                    <span class="catalog-sidebar__link">Бюсгалтеры</span>
-                </li>
-                <li class="catalog-sidebar__item" id="filter-pants" data-f="трусы">
-                    <span class="catalog-sidebar__link">Трусики</span>
-                </li>
-                <li class="catalog-sidebar__item" id="filter-bandages" data-f="бандаж">
-                    <span class="catalog-sidebar__link">Бандажи</span>
-                </li>
-                <li class="catalog-sidebar__item" id="filter-all">
-                    <span class="catalog-sidebar__link">Все&nbspтовары</span>
-                </li>
-            </ul>
+            <div id="controlButtons" style="display: flex; flex-direction: column"></div>
 
             <p class="test-test">Выберите цвет:</p>
 
             <form action="" class="catalog__filter">
                 <div>
-                    <input type="checkbox" id="color-pink" data-f="розовый">
-                    <label for="color-pink" data-f="розовый">Розовый</label>
+                    <input type="checkbox" id="color" data-f="розовый">
+                    <label>Розовый</label>
                 </div>
 
                 <div>
-                    <input type="checkbox" id="color-black" data-f="черный">
-                    <label for="color-black" data-f="черный">Черный</label>
+                    <input type="checkbox" id="color" data-f="черный">
+                    <label>Черный</label>
                 </div>
             </form>
-
-            <!-- 
-            <ul class="catalog-sidebar__color">
-                <li class="catalog-sidebar-color__item" id="color-pink" data-f="розовый">
-                    Розовый
-                </li>
-                <li class="catalog-sidebar-color__item" id="color-black" data-f="черный">
-                    Черный
-                </li>
-                <li class="catalog-sidebar-color__item" id="color-white" data-f="белый">
-                    Белый
-                </li>
-            </ul> -->
-
-
-
         </aside>
 
-        <div id="products">
-        </div>
+        <div id="products"></div>
 
     </main>
-
 
     <footer class="footer container">
         <h2 class="footer__title">Следите за нашими новинками</h2>
 
         <ul class="footer__menu">
-            <li class="footer__item"><a href="catalog.html" class="footer__link">Каталог</a></li>
-            <li class="footer__item"><a href="delivery.html" class="footer__link">Доставка</a></li>
-            <li class="footer__item"><a href="about.html" class="footer__link">Оплата</a></li>
+            <li class="footer__item"><a href="" class="footer__link">Каталог</a></li>
+            <li class="footer__item"><a href="" class="footer__link">Доставка</a></li>
+            <li class="footer__item"><a href="" class="footer__link">Оплата</a></li>
         </ul>
 
         <ul class="footer__social">
@@ -171,15 +137,15 @@
 
         <p class="footer-form__title">Оставьте адрес своей электронной почты</p>
 
-        <div class="footer-form__sended">
-            <p>На ваш электронный адрес отправлено письмо!</p>
-            <img src="./img/footer/send-mail.svg" alt="">
-        </div>
-
         <form action="" class="footer__form">
             <input type="email" placeholder="Ivanovivan@mail.ru" class="footer-form__email">
             <input type="submit" сlass="pink-submit" id="submit" value="Получать новости" />
         </form>
+
+        <div class="footer-form__sended">
+            <p>На ваш электронный адрес отправлено письмо!</p>
+            <img src="./img/footer/send-mail.svg" alt="">
+        </div>
 
         <div class="footer__copyright">
 
@@ -198,9 +164,7 @@
             </div>
 
         </div>
-
     </footer>
-
 
 </body>
 

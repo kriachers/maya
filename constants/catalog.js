@@ -1,5 +1,25 @@
 const ROOT_PRODUCTS = document.getElementById('products');
-
+const CATEGORIES_DATA = [{
+    text: 'Лосины',
+    category: 'лосины'
+},
+{
+    text: "Бюстгалетры",
+    category: 'бюсгальтер'
+},
+{
+    text: "Трусики",
+    category: 'трусы'
+},
+{
+    text: "Бандажи",
+    category: 'бандаж'
+},
+{
+    text: "Все товары",
+    category: 'allItems',
+}
+];
 const CATALOG = [
 
     {
@@ -10,7 +30,7 @@ const CATALOG = [
         label: 'хит продаж',
         color: ['бежевый'],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы'],
     },
 
     {
@@ -20,7 +40,7 @@ const CATALOG = [
         price: 1100,
         color: ['черный'],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы']
     },
 
     {
@@ -30,7 +50,7 @@ const CATALOG = [
         price: 1150,
         color: ['голубой'],
         size: ["S", "M", "L", "XL"],
-        category: 'бандаж'
+        category: ['бандаж']
     },
 
     {
@@ -40,7 +60,7 @@ const CATALOG = [
         price: 1150,
         color: ["серый", "черный"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: ['лосины']
     },
 
     {
@@ -50,7 +70,7 @@ const CATALOG = [
         price: 1150,
         color: ["серый", "черный"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: ['лосины']
     },
 
     {
@@ -60,7 +80,7 @@ const CATALOG = [
         price: 1150,
         color: ["розовый", "черный", "серый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: ['бюсгальтер']
     },
 
     {
@@ -70,7 +90,7 @@ const CATALOG = [
         price: 1150,
         color: ["голубой"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: ['лосины']
     },
 
     {
@@ -80,7 +100,7 @@ const CATALOG = [
         price: 1190,
         color: ["черный"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: ['лосины']
     },
 
 
@@ -91,7 +111,7 @@ const CATALOG = [
         price: 1190,
         color: ["серый"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: ['лосины']
     },
 
     {
@@ -101,7 +121,7 @@ const CATALOG = [
         price: 1190,
         color: ["серый"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: ['лосины']
     },
 
     {
@@ -111,7 +131,7 @@ const CATALOG = [
         price: 699,
         color: ['розовый'],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы']
     },
 
     {
@@ -121,7 +141,7 @@ const CATALOG = [
         price: 699,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы']
     },
 
     {
@@ -131,7 +151,7 @@ const CATALOG = [
         price: 699,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы']
     },
 
     {
@@ -141,7 +161,7 @@ const CATALOG = [
         price: 899,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы']
     },
 
     {
@@ -151,7 +171,7 @@ const CATALOG = [
         price: 299,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: ['трусы']
     },
 
     {
@@ -161,7 +181,7 @@ const CATALOG = [
         price: 1399,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: ['бюсгальтер']
     },
 
     {
@@ -171,7 +191,7 @@ const CATALOG = [
         price: 1399,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: ['бюсгальтер']
     },
 
     {
@@ -181,9 +201,8 @@ const CATALOG = [
         price: 1699,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: ['бюсгальтер']
     }
 ]
-
 
 let filterCategoryCATALOG = CATALOG;

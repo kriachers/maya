@@ -1,424 +1,154 @@
 class Products {
+	data = [];
+	filteredData = [];
+	productsListContainer;
 
-    constructor() {
-        this.classNameActive = 'product-element__btn_active';
-        this.labelAdd = 'Добавить в корзину';
-        this.labelRemove = 'Удалить из корзины';
+	constructor(data) {
+		this.productsListContainer = document.createElement("ul");
+		this.productsListContainer.classList.add("products-container");
 
-    }
+		this.data = data;
 
-    render() {
-        let htmlCatalog = '';
-        CATALOG.forEach(({ id, name, price, img }) => {
-            htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                    <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-        });
+		ROOT_PRODUCTS.appendChild(this.productsListContainer);
+	}
 
-        let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
+	catalogItem(item) {
+		//TODO: может будет лучше сделать отдельную функцию или класс Factory для создания DOM элемента
+		const listItem = document.createElement("li");
+		listItem.classList.add("products-item");
 
-        ROOT_PRODUCTS.innerHTML = html;
-    }
+		const image = document.createElement("img");
+		image.classList.add("product-element__img");
+		image.setAttribute("src", `${item.img}`);
 
-    renderFilter() {
-        let htmlCatalog = '';
+		const itemName = document.createElement("span");
+		itemName.classList.add("product-element__name");
+		itemName.innerHTML = item.name;
 
-        newCatalog.forEach(({ id, name, price, img }) => {
-            htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                    <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-        });
+		const itemPrice = document.createElement("span");
+		itemPrice.classList.add("product-element__name");
+		itemPrice.innerHTML = `${item.price} ₽`;
 
-        let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
+		const infoBtn = new Button(
+			"Подробнее",
+			"product-element__btn",
+			item
+		).render();
 
-        ROOT_PRODUCTS.innerHTML = html;
-    }
+		//TODO: переход на страницу товара
+		infoBtn.addEventListener("click", () => {
+			console.log("info click", item);
+		});
 
+		listItem.appendChild(image);
+		listItem.appendChild(itemName);
+		listItem.appendChild(itemPrice);
+		listItem.appendChild(infoBtn);
+
+		return listItem;
+	}
+
+	renderData() {
+		this.data.forEach((productItem) => {
+			this.productsListContainer.appendChild(this.catalogItem(productItem));
+		});
+	}
+
+	renderFilteredData() {
+		document.querySelectorAll(".products-item").forEach((el) => el.remove());
+
+		this.filteredData = [...this.data].filter((dataElem) => {
+			const appliedFilters = [];
+			for (const key in filters) {
+				if (filters[key].size !== 0) {
+					appliedFilters.push([key, [...filters[key]]])
+				}
+			}
+			return appliedFilters.every(([key, data]) => {
+				return dataElem[key].some(x => data.some(y => y === x));
+			});
+		});
+
+		//TODO: отдельный компонент* под не найденные по фильтрам товары
+		if(this.filteredData.length === 0) {
+			const mockNoSuchProduct = document.createElement('div');
+			mockNoSuchProduct.classList.add("products-item");
+			mockNoSuchProduct.innerHTML = 'По заданным фильтрам нет товаров';
+			this.productsListContainer.appendChild(mockNoSuchProduct)
+		}
+
+		this.filteredData.forEach((productItem) => {
+			this.productsListContainer.appendChild(this.catalogItem(productItem));
+		});
+	}
 }
 
-const productsPage = new Products();
-productsPage.render();
+document.addEventListener("DOMContentLoaded", () => {
 
+	const buttonsNode = document.getElementById("controlButtons");
+	const products = new Products(CATALOG);
+	products.renderData();
 
-var isPants = CATALOG.filter(function (hero) {
-    return hero.category == 'трусы';
+	CATEGORIES_DATA.forEach((categorySetting) => {
+		const categoriesButton = new Button(
+			categorySetting.text,
+			"catalog-sidebar__item"
+		).render();
+
+		//TODO: добавлять стиль выбранной категории (фон #BF7691)
+		categoriesButton.addEventListener("click", () => {
+
+			// Что-бы не стакались категории / можно будет убрать для нужной реализации
+			for (const key in filters) {
+				if (key === "category") {
+					filters[key].clear();
+				}
+			}
+			// Чистка категории если нажата кнопка "Все товары"
+			if (categorySetting.category === 'allItems') {
+				filters.category.clear()
+			} else {
+				filters = {
+					...filters,
+					category: filters.category.add(categorySetting.category),
+				};
+			}
+			products.renderFilteredData();
+		});
+		buttonsNode.appendChild(categoriesButton);
+	});
+
+	const inputs = document.getElementsByTagName("input");
+
+	[...inputs].forEach((input) => {
+		input.addEventListener("change", (event) => {
+			
+			const colorCheckBox = event.target.getAttribute("data-f");
+			// По атрибуту data-f понимаем что это инпут цвета / можно переделать например через id='color-input'
+			if (colorCheckBox) {
+				colorCheckboxState = {
+					...colorCheckboxState,
+					[colorCheckBox]: {
+						isChecked: !colorCheckboxState[colorCheckBox].isChecked,
+					},
+				};
+
+				if (colorCheckboxState[colorCheckBox].isChecked) {
+					filters = {
+						...filters,
+						color: filters.color.add(colorCheckBox),
+					};
+					products.renderFilteredData();
+				}
+
+				if (
+					!colorCheckboxState[colorCheckBox].isChecked &&
+					filters.color.has(colorCheckBox)
+				) {
+					filters.color.delete(colorCheckBox);
+					products.renderFilteredData();
+				}
+			}
+		});
+	});
 });
-
-const pants = document.getElementById('filter-pants');
-
-pants.addEventListener('click', function () {
-
-
-
-    filterCategoryCATALOG = isPants;
-    console.log(filterCategoryCATALOG)
-
-    let htmlCatalog = '';
-
-    isPants.forEach(({ id, name, price, img }) => {
-
-        htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                    <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-    });
-    let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
-
-    ROOT_PRODUCTS.innerHTML = html;
-})
-
-
-let isBandages = CATALOG.filter(function (hero) {
-    return hero.category == 'бандаж';
-});
-
-
-const bandages = document.getElementById('filter-bandages');
-
-
-bandages.addEventListener('click', function () {
-
-    filterCategoryCATALOG = isBandages;
-    console.log(filterCategoryCATALOG)
-
-    let htmlCatalog = '';
-
-    isBandages.forEach(({ id, name, price, img }) => {
-
-        htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                    <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-    });
-    let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
-
-    ROOT_PRODUCTS.innerHTML = html;
-})
-
-
-// bra
-
-
-var isBra = CATALOG.filter(function (hero) {
-    return hero.category == 'бюсгальтер';
-});
-
-
-const bra = document.getElementById('filter-busgalters');
-
-bra.addEventListener('click', function () {
-
-    filterCategoryCATALOG = isBra;
-    console.log(filterCategoryCATALOG)
-
-    let htmlCatalog = '';
-
-    isBra.forEach(({ id, name, price, img }) => {
-
-        htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                   <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-    });
-    let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
-
-    ROOT_PRODUCTS.innerHTML = html;
-})
-
-
-var isLeggins = CATALOG.filter(function (hero) {
-    return hero.category == 'лосины';
-});
-
-
-
-
-// const leggins = document.getElementById('filter-leggins');
-
-// leggins.addEventListener('click', function () {
-
-//     let htmlCatalog = '';
-
-//     isLeggins.forEach(({ id, name, price, img }) => {
-
-//         htmlCatalog += `
-//                 <li class='products-item'>
-//                     <img class='product-element__img' src='${img}' />
-//                     <span class='product-element__name'>${name}</span>
-//                     <span class='product-element__price'>${price} ₽</span>
-//                     <button class='product-element__btn>'Подробнее'</button>
-//                 </li>
-//             `;
-//     });
-//     let html = `
-//         <ul class='products-container'>
-//             ${htmlCatalog}
-//         </ul>
-//         `;
-
-//     ROOT_PRODUCTS.innerHTML = html;
-// })
-
-
-// фильтр "леггинсы"
-
-let newCatalog =
-    CATALOG.filter(function (hero) {
-        return hero.category == 'лосины';
-    });
-
-const legginsPage = new Products();
-
-const leggins = document.getElementById('filter-leggins');
-
-leggins.addEventListener('click', () => {
-    legginsPage.renderFilter();
-    filterCategoryCATALOG = newCatalog;
-    console.log(filterCategoryCATALOG)
-})
-
-
-// фильтр "все товары" - методы класса render()
-
-const allItems = document.getElementById('filter-all');
-
-allItems.addEventListener('click', () => {
-
-    productsPage.render()
-
-})
-
-
-
-
-// фильтры по цветам 
-
-//один код для всех категорий цвета 
-// связь с html через data-f="назавние-цвета"> и event.target.dataset['f']; 
-
-// document.querySelector('.catalog-sidebar__color').addEventListener('click', (event) => {
-
-//     if (event.target.tagName !== 'LI') return false;
-
-//     let filterClass = event.target.dataset['f'];
-//     console.log(filterClass)
-
-//     let isColor = CATALOG.filter(function (element) {
-//         let elementColor = element.color;
-//         let elementFilteredClor = elementColor.find(item => {
-//             if (item == filterClass) {
-//                 return true;
-//             }
-//         });
-//         return elementFilteredClor == filterClass;
-//     })
-//     console.log(isColor);
-
-//     let htmlCatalog = '';
-//     isColor.forEach(({ id, name, price, img }) => {
-
-//         htmlCatalog += `
-//                 <li class='products-item'>
-//                     <img class='product-element__img' src='${img}' />
-//                     <span class='product-element__name'>${name}</span>
-//                     <span class='product-element__price'>${price} ₽</span>
-//                    <button class='product-element__btn'>Подробнее</button>
-//                 </li>
-//             `;
-//     });
-//     let html = `
-//         <ul class='products-container'>
-//             ${htmlCatalog}
-//         </ul>
-//         `;
-
-//     ROOT_PRODUCTS.innerHTML = html;
-
-// })
-
-
-// ФИЛЬТР ПО ЦВЕТАМ - SELECT!
-
-
-let filterColor = document.querySelector('.catalog__filter')
-
-let htmlCatalog = '';
-filterColor.addEventListener('change', function () {
-
-    // если клик добавляет к форме "галочку"
-    if (event.target.checked) {
-
-        let filterClass = event.target.dataset['f'];
-
-        let isColor = filterCategoryCATALOG.filter(function (element) {
-            let elementColor = element.color;
-            let elementFilteredClor = elementColor.find(item => {
-                if (item == filterClass) {
-                    return true;
-                }
-            });
-            return elementFilteredClor == filterClass;
-        })
-
-
-        isColor.forEach(({ id, name, price, img }) => {
-
-            htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                   <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-        });
-        let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
-        console.log(html);
-        ROOT_PRODUCTS.innerHTML = html;
-
-        // если клик удаляет из формы "галочку"
-
-    } else if (event.target.tagName == 'INPUT' || event.target.tagName == 'LABEL') {
-        let filterClass = event.target.dataset['f'];
-
-        let isColor = filterCategoryCATALOG.filter(function (element) {
-            let elementColor = element.color;
-            let elementFilteredClor = elementColor.find(item => {
-                if (item == filterClass) {
-                    return true;
-                }
-            });
-            return elementFilteredClor == filterClass;
-        })
-
-        isColor.forEach(({ id, name, price, img }) => {
-            htmlCatalog = htmlCatalog.replace(`
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                   <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `, '');
-        });
-
-        // если htmlCatalog не пустой - то удали из списка товары, с которых мы убрали галочку
-        if (htmlCatalog.length != 0) {
-
-            let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
-            ROOT_PRODUCTS.innerHTML = html;
-
-            // если htmlCatalog пустой - то выводи ВСЕ ТОВАРЫ
-        } else if (htmlCatalog.length == 0) {
-            let htmlCatalog = '';
-            CATALOG.forEach(({ id, name, price, img }) => {
-                htmlCatalog += `
-                <li class='products-item'>
-                    <img class='product-element__img' src='${img}' />
-                    <span class='product-element__name'>${name}</span>
-                    <span class='product-element__price'>${price} ₽</span>
-                    <button class='product-element__btn'>Подробнее</button>
-                </li>
-            `;
-            });
-
-            let html = `
-        <ul class='products-container'>
-            ${htmlCatalog}
-        </ul>
-        `;
-
-            ROOT_PRODUCTS.innerHTML = html;
-        }
-    }
-
-
-})
-
-
-// ВЫДЕЛИТЬ ЦВЕТОМ КАТЕГОРИЮ 
-
-const categoryList = document.querySelector('.catalog-sidebar__nav');
-
-// переменная для хранений id предыдущей выбранной категории 
-var lastActiveTool = 0;
-
-categoryList.addEventListener('click', function () {
-    if (event.target.tagName != 'LI' && event.target.tagName != 'SPAN') {
-        return
-    }
-    if (event.target.tagName == 'LI') {
-
-        if (lastActiveTool != 0) {
-            document.getElementById(lastActiveTool).classList.remove('active')
-        }
-
-        event.target.classList.add('active')
-        lastActiveTool = event.target.id;
-        console.log('hi[jwdb')
-
-        // убираем цвет из предыдущей выбранной категории (если есть)
-    }
-    if (event.target.tagName == 'SPAN') {
-        if (lastActiveTool != 0) {
-            document.getElementById(lastActiveTool).classList.remove('active')
-        }
-
-        event.target.parentNode.classList.add('active')
-        lastActiveTool = event.target.parentNode.id;
-        console.log('hi[jwdb')
-
-        // убираем цвет из предыдущей выбранной категории (если есть)
-
-    }
-})
