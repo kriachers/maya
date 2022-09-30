@@ -69,7 +69,7 @@ pants.addEventListener('click', function () {
 
 
     filterCategoryCATALOG = isPants;
-    console.log(filterCategoryCATALOG)
+    CategoryPicked = filterCategoryCATALOG;
 
     let htmlCatalog = '';
 
@@ -94,6 +94,9 @@ pants.addEventListener('click', function () {
 })
 
 
+// бандаж
+
+
 let isBandages = CATALOG.filter(function (hero) {
     return hero.category == 'бандаж';
 });
@@ -101,11 +104,10 @@ let isBandages = CATALOG.filter(function (hero) {
 
 const bandages = document.getElementById('filter-bandages');
 
-
 bandages.addEventListener('click', function () {
 
     filterCategoryCATALOG = isBandages;
-    console.log(filterCategoryCATALOG)
+    CategoryPicked = filterCategoryCATALOG;
 
     let htmlCatalog = '';
 
@@ -143,7 +145,7 @@ const bra = document.getElementById('filter-busgalters');
 bra.addEventListener('click', function () {
 
     filterCategoryCATALOG = isBra;
-    console.log(filterCategoryCATALOG)
+    CategoryPicked = filterCategoryCATALOG;
 
     let htmlCatalog = '';
 
@@ -202,7 +204,7 @@ var isLeggins = CATALOG.filter(function (hero) {
 // })
 
 
-// фильтр "леггинсы"
+// фильтр "леггинсы + renderFilter"
 
 let newCatalog =
     CATALOG.filter(function (hero) {
@@ -215,8 +217,9 @@ const leggins = document.getElementById('filter-leggins');
 
 leggins.addEventListener('click', () => {
     legginsPage.renderFilter();
+
     filterCategoryCATALOG = newCatalog;
-    console.log(filterCategoryCATALOG)
+    CategoryPicked = filterCategoryCATALOG;
 })
 
 
@@ -282,28 +285,49 @@ allItems.addEventListener('click', () => {
 // ФИЛЬТР ПО ЦВЕТАМ - SELECT!
 
 
+
+
 let filterColor = document.querySelector('.catalog__filter')
 
 let htmlCatalog = '';
+
 filterColor.addEventListener('change', function () {
 
     // если клик добавляет к форме "галочку"
     if (event.target.checked) {
 
         let filterClass = event.target.dataset['f'];
+        console.log(filterClass)
 
-        let isColor = filterCategoryCATALOG.filter(function (element) {
-            let elementColor = element.color;
-            let elementFilteredClor = elementColor.find(item => {
-                if (item == filterClass) {
-                    return true;
-                }
-            });
-            return elementFilteredClor == filterClass;
+        let isColorOrCloth = filterCategoryCATALOG.filter(function (element) {
+
+            let elementData;
+
+            if (event.target.classList.contains('color')) {
+                elementData = (element.color);
+
+                let elementFilteredClor = elementData.find(item => {
+                    if (item == filterClass) {
+                        return true;
+                    }
+                });
+                return elementFilteredClor == filterClass;
+            }
+
+            if (event.target.classList.contains('cloth')) {
+                elementData = (element.cloth);
+
+                let elementFilteredClor = elementData.find(item => {
+                    if (item == filterClass) {
+                        return true;
+                    }
+                });
+                return elementFilteredClor == filterClass;
+            }
         })
 
 
-        isColor.forEach(({ id, name, price, img }) => {
+        isColorOrCloth.forEach(({ id, name, price, img }) => {
 
             htmlCatalog += `
                 <li class='products-item'>
@@ -327,7 +351,7 @@ filterColor.addEventListener('change', function () {
     } else if (event.target.tagName == 'INPUT' || event.target.tagName == 'LABEL') {
         let filterClass = event.target.dataset['f'];
 
-        let isColor = filterCategoryCATALOG.filter(function (element) {
+        isColor = filterCategoryCATALOG.filter(function (element) {
             let elementColor = element.color;
             let elementFilteredClor = elementColor.find(item => {
                 if (item == filterClass) {
@@ -384,6 +408,122 @@ filterColor.addEventListener('change', function () {
 
 
 })
+
+
+// ФИЛЬТР ПО ТКАНЯМ - SELECT!
+
+let filterCloth = document.querySelector('.cloth__filter')
+
+filterCloth.addEventListener('change', function () {
+
+    // если клик добавляет к форме "галочку"
+    if (event.target.checked) {
+
+        let filterClass = event.target.dataset['f'];
+
+        let isCloth = filterCategoryCATALOG.filter(function (element) {
+            let elementCloth = element.cloth;
+            console.log(elementCloth)
+            let elementFilteredCloth = elementCloth.find(item => {
+                if (item == filterClass) {
+                    return true;
+                }
+            });
+            return elementFilteredCloth == filterClass;
+        })
+
+
+        isCloth.forEach(({ id, name, price, img }) => {
+
+            htmlCatalog += `
+                <li class='products-item'>
+                    <img class='product-element__img' src='${img}' />
+                    <span class='product-element__name'>${name}</span>
+                    <span class='product-element__price'>${price} ₽</span>
+                   <button class='product-element__btn'>Подробнее</button>
+                </li>
+            `;
+        });
+        let html = `
+        <ul class='products-container'>
+            ${htmlCatalog}
+        </ul>
+        `;
+        ROOT_PRODUCTS.innerHTML = html;
+
+        // если клик удаляет из формы "галочку"
+
+    } else if (event.target.tagName == 'INPUT' || event.target.tagName == 'LABEL') {
+        let filterClass = event.target.dataset['f'];
+
+        isCloth = filterCategoryCATALOG.filter(function (element) {
+            let elementCloth = element.cloth;
+            let elementFilteredCloth = elementCloth.find(item => {
+                if (item == filterClass) {
+                    return true;
+                }
+            });
+            return elementFilteredCloth == filterClass;
+        })
+
+        isCloth.forEach(({ id, name, price, img }) => {
+            htmlCatalog = htmlCatalog.replace(`
+                <li class='products-item'>
+                    <img class='product-element__img' src='${img}' />
+                    <span class='product-element__name'>${name}</span>
+                    <span class='product-element__price'>${price} ₽</span>
+                   <button class='product-element__btn'>Подробнее</button>
+                </li>
+            `, '');
+        });
+
+        // если htmlCatalog не пустой - то удали из списка товары, с которых мы убрали галочку
+        if (htmlCatalog.length != 0) {
+
+            let html = `
+        <ul class='products-container'>
+            ${htmlCatalog}
+        </ul>
+        `;
+            ROOT_PRODUCTS.innerHTML = html;
+
+            // если htmlCatalog пустой - то выводи ВСЕ ТОВАРЫ
+        } else if (htmlCatalog.length == 0) {
+            let htmlCatalog = '';
+            CATALOG.forEach(({ id, name, price, img }) => {
+                htmlCatalog += `
+                <li class='products-item'>
+                    <img class='product-element__img' src='${img}' />
+                    <span class='product-element__name'>${name}</span>
+                    <span class='product-element__price'>${price} ₽</span>
+                    <button class='product-element__btn'>Подробнее</button>
+                </li>
+            `;
+            });
+
+            let html = `
+        <ul class='products-container'>
+            ${htmlCatalog}
+        </ul>
+        `;
+
+            ROOT_PRODUCTS.innerHTML = html;
+        }
+    }
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ВЫДЕЛИТЬ ЦВЕТОМ КАТЕГОРИЮ 

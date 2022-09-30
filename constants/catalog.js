@@ -10,7 +10,8 @@ const CATALOG = [
         label: 'хит продаж',
         color: ['бежевый'],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['синтетика']
     },
 
     {
@@ -20,7 +21,8 @@ const CATALOG = [
         price: 1100,
         color: ['черный'],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['синтетика']
     },
 
     {
@@ -30,7 +32,8 @@ const CATALOG = [
         price: 1150,
         color: ['голубой'],
         size: ["S", "M", "L", "XL"],
-        category: 'бандаж'
+        category: ['бандаж'],
+        cloth: ['синтетика']
     },
 
     {
@@ -40,7 +43,8 @@ const CATALOG = [
         price: 1150,
         color: ["серый", "черный"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: 'лосины',
+        cloth: ['хлопок']
     },
 
     {
@@ -50,7 +54,8 @@ const CATALOG = [
         price: 1150,
         color: ["серый", "черный"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: 'лосины',
+        cloth: ['хлопок']
     },
 
     {
@@ -60,7 +65,8 @@ const CATALOG = [
         price: 1150,
         color: ["розовый", "черный", "серый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: 'бюсгальтер',
+        cloth: ['микрофибра']
     },
 
     {
@@ -70,7 +76,8 @@ const CATALOG = [
         price: 1150,
         color: ["голубой"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: 'лосины',
+        cloth: ['хлопок']
     },
 
     {
@@ -80,7 +87,8 @@ const CATALOG = [
         price: 1190,
         color: ["черный"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: 'лосины',
+        cloth: ['кожа']
     },
 
 
@@ -91,7 +99,8 @@ const CATALOG = [
         price: 1190,
         color: ["серый"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: 'лосины',
+        cloth: ['хлопок']
     },
 
     {
@@ -101,7 +110,8 @@ const CATALOG = [
         price: 1190,
         color: ["серый"],
         size: ["S", "M", "L", "XL"],
-        category: 'лосины'
+        category: 'лосины',
+        cloth: ['хлопок']
     },
 
     {
@@ -111,7 +121,8 @@ const CATALOG = [
         price: 699,
         color: ['розовый'],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['микрофибра']
     },
 
     {
@@ -121,7 +132,8 @@ const CATALOG = [
         price: 699,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['микрофибра']
     },
 
     {
@@ -131,7 +143,8 @@ const CATALOG = [
         price: 699,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['кружево', "микрофибра"]
     },
 
     {
@@ -141,7 +154,8 @@ const CATALOG = [
         price: 899,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['хлопок']
     },
 
     {
@@ -151,7 +165,8 @@ const CATALOG = [
         price: 299,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'трусы'
+        category: 'трусы',
+        cloth: ['кружево']
     },
 
     {
@@ -161,7 +176,8 @@ const CATALOG = [
         price: 1399,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: 'бюсгальтер',
+        cloth: ['микрофибра']
     },
 
     {
@@ -171,7 +187,8 @@ const CATALOG = [
         price: 1399,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: 'бюсгальтер',
+        cloth: ['кружево']
     },
 
     {
@@ -181,7 +198,8 @@ const CATALOG = [
         price: 1699,
         color: ["розовый", "черный", "белый"],
         size: ["S", "M", "L", "XL"],
-        category: 'бюсгальтер'
+        category: 'бюсгальтер',
+        cloth: ['микрофибра']
     }
 ]
 

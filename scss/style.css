@@ -1348,4 +1348,21 @@ button {
   .wearUs {
     margin-bottom: 80px;
   }
+}
+.delivery {
+  margin-bottom: 204px;
+}
+
+.delivery-text__item {
+  margin-bottom: 60px;
+}
+
+.delivery-text__item h3 {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 500px) {
+  .delivery {
+    margin-bottom: 80px;
+  }
 }/*# sourceMappingURL=style.css.map */
